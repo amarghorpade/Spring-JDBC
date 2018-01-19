@@ -1,0 +1,55 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DataSource -->
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		id="dataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/test"/>
+		<property name="username" value="root"/>
+		<property name="password" value="system"/>
+	</bean>
+	
+<!-- for DataSource 
+
+<bean id="dao" class="com.scp.springJdbcDemo.EmployeeODAOImpl">
+	<property name="dataSource" ref="dataSource"/>
+</bean>
+
+ -->
+
+<!-- FOR jdbc template
+
+ <bean id="Template" class="org.springframework.jdbc.core.JdbcTemplate">
+	<property name="dataSource" ref="dataSource"/>
+</bean>
+<bean id="dao" class="com.scp.springJdbcDemo.EmployeeODAOImpl">
+	<property name="jdbcTemplate" ref="Template"/>
+</bean>
+ -->
+ 
+<!-- FOR NamedParameterJdbcTemplate
+
+ <bean id="Template" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+	<constructor-arg ref="dataSource"/>
+</bean>
+<bean id="dao" class="com.scp.springJdbcDemo.EmployeeODAOImpl">
+	<constructor-arg ref="Template"/>
+</bean>
+ -->
+ 
+ <!-- for SimpleJdbcTemplate --> 
+ <bean id="Template" class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate">
+	<constructor-arg ref="dataSource"/>
+</bean>
+
+<bean id="dao" class="com.scp.springJdbcDemo.EmployeeODAOImpl">
+	<constructor-arg ref="Template"/>
+</bean>
+
+</beans>
